@@ -1,0 +1,92 @@
+<div class="container align-middle">
+  <h1>Currency Convertor</h1>
+  <div class="row">
+    <div class="col-sm">
+      <div class="row">
+        <div class="col-sm">
+          <form [formGroup]="fromAmountForm">
+            <input type="text"
+                   formControlName="fromAmount"
+                   [ngModel]="fromAmount"
+                   (ngModelChange)="onFromAmountChange($event)"
+                   placeholder="From amount"/>
+            <div class="alert alert-danger"
+                 role="alert"
+                 *ngIf="fromAmountForm.controls['fromAmount'].errors?.['pattern']">
+              Only Numbers are allowed
+            </div>
+            <div class="alert alert-danger"
+                 role="alert"
+                 *ngIf="fromAmountForm.controls['fromAmount'].errors?.['numberLengthInvalid']">
+              Max number length is 9 digits
+            </div>
+            <div class="alert alert-danger"
+                 role="alert"
+                 *ngIf="fromAmountForm.controls['fromAmount'].errors?.['numberSeparatorCountInvalid']">
+              Invalid number
+            </div>
+          </form>
+        </div>
+        <div class="col-sm">
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary"
+                    id="dropdownBasic1"
+                    ngbDropdownToggle>
+              {{fromCurrency}}
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <ng-container *ngFor="let currency of currencyKeys">
+                <button ngbDropdownItem (click)="changeFromCurrency(currency)">{{currency}}</button>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm">
+      <button class="btn btn-primary" (click)="swapAmounts()">< ></button>
+    </div>
+    <div class="col-sm">
+      <div class="row">
+        <div class="col-sm">
+          <form [formGroup]="toAmountForm">
+            <input type="text"
+                   formControlName="toAmount"
+                   [ngModel]="toAmount"
+                   (ngModelChange)="onToAmountChange($event)"
+                   placeholder="From aount"/>
+            <div class="alert alert-danger"
+                 role="alert"
+                 *ngIf="toAmountForm.controls['toAmount'].errors?.['pattern']">
+              Only Numbers are allowed
+            </div>
+            <div class="alert alert-danger"
+                 role="alert"
+                 *ngIf="toAmountForm.controls['toAmount'].errors?.['numberSeparatorCountInvalid']">
+              Invalid Number
+            </div>
+            <div class="alert alert-danger"
+                 role="alert"
+                 *ngIf="toAmountForm.controls['toAmount'].errors?.['numberSeparatorCountInvalid']">
+              Invalid number
+            </div>
+          </form>
+        </div>
+        <div class="col-sm">
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary"
+                    id="dropdownBasic1"
+                    ngbDropdownToggle>
+              {{toCurrency}}
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <ng-container *ngFor="let currency of currencyKeys">
+                <button ngbDropdownItem (click)="changeToCurrency(currency)">{{currency}}</button>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
