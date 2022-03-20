@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CurrencyService} from "./service/app.currency.converter.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ValidateNumberLength, ValidateNumberSeparatorCount} from "./service/app.currency.converter.customn.validator";
+import {ValidateNumberLength, ValidateNumberSeparatorCount} from "./validator/app.currency.converter.customn.validator";
 
 @Component({
   selector: 'app-root',
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit{
     this.fromAmountForm = new FormGroup({
       fromAmount: new FormControl("", {
         validators: [
-          Validators.pattern("^[1-9][\\.\\d]*(,\\d+)?$"),
+          Validators.pattern("[+-]?((\\d+\\.?\\d*)|(\\.\\d+))"),
           ValidateNumberLength,
           ValidateNumberSeparatorCount],
         updateOn: "blur"
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit{
     this.toAmountForm = new FormGroup({
       toAmount: new FormControl("", {
         validators: [
-          Validators.pattern("^[1-9][\\.\\d]*(,\\d+)?$"),
+          Validators.pattern("[+-]?((\\d+\\.?\\d*)|(\\.\\d+))"),
           ValidateNumberLength,
           ValidateNumberSeparatorCount],
         updateOn: "blur"
