@@ -17,8 +17,8 @@ export class AppComponent implements OnInit{
   public toCurrency = 'ALL';
   public fromAmount = '';
   public toAmount = ''
-  fromAmountForm: FormGroup;
-  toAmountForm: FormGroup;
+  public fromAmountForm: FormGroup;
+  public toAmountForm: FormGroup;
 
   constructor(private currencyService: CurrencyService) {
     this.fromAmountForm = new FormGroup({
@@ -57,13 +57,13 @@ export class AppComponent implements OnInit{
     this.toAmount = amount;
   }
 
-  async changeFromCurrency(currency: string) {
+  async onFromCurrencyChange(currency: string) {
     this.fromCurrency = currency;
 
     this.getRatioAndConvert().then();
   }
 
-  async changeToCurrency(currency: string) {
+  async onToCurrencyChange(currency: string) {
     this.toCurrency = currency;
 
     this.getRatioAndConvert().then();

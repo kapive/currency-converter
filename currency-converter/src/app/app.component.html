@@ -36,7 +36,7 @@
             </button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
               <ng-container *ngFor="let currency of currencyKeys">
-                <button ngbDropdownItem (click)="changeFromCurrency(currency)">{{currency}}</button>
+                <button ngbDropdownItem (click)="onFromCurrencyChange(currency)">{{currency}}</button>
               </ng-container>
             </div>
           </div>
@@ -81,7 +81,7 @@
             </button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
               <ng-container *ngFor="let currency of currencyKeys">
-                <button ngbDropdownItem (click)="changeToCurrency(currency)">{{currency}}</button>
+                <button ngbDropdownItem (click)="onToCurrencyChange(currency)">{{currency}}</button>
               </ng-container>
             </div>
           </div>
