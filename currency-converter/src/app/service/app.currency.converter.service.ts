@@ -6,7 +6,7 @@ import {Injectable} from "@angular/core";
 })
 
 export class CurrencyService {
-  public apiKeyParam = {'apiKey': '9d054d763ca42a16c911'};
+  public apiKeyParam = {'apiKey': '9809feedc9a53cfc77e7'};
 
   constructor(private httpClient: HttpClient) {}
 

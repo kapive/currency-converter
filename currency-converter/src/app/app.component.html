@@ -5,7 +5,8 @@
       <div class="row">
         <div class="col-sm">
           <form [formGroup]="fromAmountForm">
-            <input type="text"
+            <input id="fromAmount"
+                   type="text"
                    formControlName="fromAmount"
                    [ngModel]="fromAmount"
                    (ngModelChange)="onFromAmountChange($event)"
@@ -30,13 +31,13 @@
         <div class="col-sm">
           <div ngbDropdown class="d-inline-block">
             <button class="btn btn-outline-primary"
-                    id="dropdownBasic1"
+                    id="fromCurrencyDropDown"
                     ngbDropdownToggle>
               {{fromCurrency}}
             </button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <div ngbDropdownMenu aria-labelledby="fromCurrencyDropDown">
               <ng-container *ngFor="let currency of currencyKeys">
-                <button ngbDropdownItem (click)="onFromCurrencyChange(currency)">{{currency}}</button>
+                <button id="fromCurrencyDropDown{{currency}}" ngbDropdownItem (click)="onFromCurrencyChange(currency)">{{currency}}</button>
               </ng-container>
             </div>
           </div>
@@ -44,17 +45,18 @@
       </div>
     </div>
     <div class="col-sm">
-      <button class="btn btn-primary" (click)="swapAmounts()">< ></button>
+      <button id="swapButton" class="btn btn-primary" (click)="swapAmounts()">< ></button>
     </div>
     <div class="col-sm">
       <div class="row">
         <div class="col-sm">
           <form [formGroup]="toAmountForm">
-            <input type="text"
+            <input id="toAmount"
+                   type="text"
                    formControlName="toAmount"
                    [ngModel]="toAmount"
                    (ngModelChange)="onToAmountChange($event)"
-                   placeholder="From aount"/>
+                   placeholder="From amount"/>
             <div class="alert alert-danger"
                  role="alert"
                  *ngIf="toAmountForm.controls['toAmount'].errors?.['pattern']">
@@ -75,13 +77,13 @@
         <div class="col-sm">
           <div ngbDropdown class="d-inline-block">
             <button class="btn btn-outline-primary"
-                    id="dropdownBasic1"
+                    id="toCurrencyDropDown"
                     ngbDropdownToggle>
               {{toCurrency}}
             </button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <div ngbDropdownMenu aria-labelledby="toCurrencyDropDown">
               <ng-container *ngFor="let currency of currencyKeys">
-                <button ngbDropdownItem (click)="onToCurrencyChange(currency)">{{currency}}</button>
+                <button id="toCurrencyDropDown{{currency}}" ngbDropdownItem (click)="onToCurrencyChange(currency)">{{currency}}</button>
               </ng-container>
             </div>
           </div>

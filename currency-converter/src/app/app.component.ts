@@ -15,8 +15,8 @@ export class AppComponent implements OnInit{
   public currencyKeys: any
   public fromCurrency = 'ALL';
   public toCurrency = 'ALL';
-  public fromAmount = '';
-  public toAmount = ''
+  public fromAmount = '0';
+  public toAmount = '0'
   public fromAmountForm: FormGroup;
   public toAmountForm: FormGroup;
 
@@ -44,13 +44,16 @@ export class AppComponent implements OnInit{
 
   async ngOnInit() {
     await this.currencyService.getCurrencies().toPromise().then(res => {
+      console.log(res)
       this.currencies = res.results
       this.currencyKeys = Object.keys(res.results)
     });
   }
 
-  onFromAmountChange(amount: string) {
+  async onFromAmountChange(amount: string) {
     this.fromAmount = amount;
+
+    this.getRatioAndConvert().then();
   }
 
   onToAmountChange(amount: string) {
@@ -79,7 +82,7 @@ export class AppComponent implements OnInit{
   }
 
   async getRatioAndConvert() {
-    if (this.toAmount != '0' && this.fromAmount != '0') {
+    if (this.fromAmount != '0') {
       await this.getCurrencyRatio().toPromise().then(res => {
         this.convertNewAmount(res[this.fromCurrency + "_" + this.toCurrency])
       });
